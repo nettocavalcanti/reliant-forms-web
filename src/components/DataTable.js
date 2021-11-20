@@ -31,12 +31,12 @@ const DataTable = (props) => {
     const uri = props.uri;
 
     useEffect(() => {
-        fetchPage(page, uri);
-    }, [page, uri]);
+        fetchPage(page, uri, rowsPerPage);
+    }, [page, uri, rowsPerPage]);
 
-    const fetchPage = (newPage, uri) => {
+    const fetchPage = (newPage, uri, newRowsPerPage) => {
         setLoading(true);
-        api.get(`${uri}?page=${newPage}`)
+        api.get(`${uri}?page=${newPage}&per_page=${newRowsPerPage}`)
             .then((response) => {
                 setItems(response.data);
             })

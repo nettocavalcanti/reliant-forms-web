@@ -3,9 +3,9 @@ import DataTable from "../DataTable";
 
 const FormList = () => {
     const header = [
-        { id: 'id', label: '#' },
-        { id: 'name', label: 'Name' },
-        { id: 'form_specs_count', label: 'Specs qty.' }
+        { id: 'id', label: '#', minWidth: 30 },
+        { id: 'name', label: 'Name', minWidth: 150 },
+        { id: 'form_specs_count', label: 'Specs qty.', minWidth: 30 }
     ]
 
     return (
