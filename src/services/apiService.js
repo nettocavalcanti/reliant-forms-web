@@ -2,7 +2,7 @@ import axios from 'axios';
 import ToastMessage from '../components/ToastMessage';
 
 const api = axios.create({
-    baseURL: 'http://localhost:3001'
+    baseURL: 'http://localhost:3001/api/v1'
 });
 
 // Treatment for generic HTTP response codes
