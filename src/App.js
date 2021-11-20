@@ -20,6 +20,7 @@ const App = () => {
                 <AppRoutes />
             </header>
           </Router>
+          {/* <Footer /> */}
         </div>
       </Container>
     </ThemeProvider>
