@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router } from "react-router-dom";
+import {ToastsContainer, ToastsStore} from 'react-toasts';
 
-function App() {
+import './App.css';
+import theme from './components/themes/theme';
+import { ThemeProvider } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import NavBar from './components/NavBar';
+import AppRoutes from './components/AppRoutes';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md">
+        <ToastsContainer store={ToastsStore}/>
+        <div className="App">
+          <Router>
+            <header className="App-header" style={{backgroundColor: theme.palette.primary.light}}>
+                <NavBar />
+                <AppRoutes />
+            </header>
+          </Router>
+        </div>
+      </Container>
+    </ThemeProvider>
   );
 }
 
