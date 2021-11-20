@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -24,6 +25,8 @@ const useStyles = makeStyles({
 
 const DataTable = (props) => {
     const classes = useStyles();
+    const navigate = useNavigate();
+
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [items, setItems] = useState([]);
@@ -85,9 +88,9 @@ const DataTable = (props) => {
                             </TableRow>
                             :
                             items && items.length > 0 ?
-                                items.map((row) => {
+                                items.map((row, index) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => navigate(`${uri}/${items[index].id}`)}>
                                             {props.header.map((column) => {
                                                 const value = row[column.id];
                                                 return (
