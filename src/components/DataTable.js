@@ -15,8 +15,6 @@ const useStyles = makeStyles({
     root: {
         marginLeft: 10,
         marginRight: 10,
-        borderRadius: 10,
-        width: '100%'
     },
     container: {
         maxHeight: 440,
