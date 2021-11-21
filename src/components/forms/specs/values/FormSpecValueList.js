@@ -1,7 +1,9 @@
 import { IconButton, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import DataTable from "../../../DataTable";
-import { RemoveRedEye, Edit } from "@material-ui/icons";
+import { Edit } from "@material-ui/icons";
 import theme from "../../../themes/theme";
 
 const useStyles = makeStyles({
@@ -18,10 +20,13 @@ const useStyles = makeStyles({
 
 const FormSpecValueList = (props) => {
     const classes = useStyles();
+    const navigate = useNavigate();
+    const params = useParams();
     const {values} = props;
 
     const handleEditClick = (event, row) => {
         event.preventDefault();
+        navigate(`/forms/${params.form_id}/specs/${params.spec_id}/values/${row.id}`)
     }
 
     const buildEditButton = (row) => {

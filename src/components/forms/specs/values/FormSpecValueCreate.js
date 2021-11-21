@@ -36,7 +36,7 @@ const useStyles = makeStyles({
     },
     buttonBlock: {
         width: '100%',
-        bottom: -130
+        bottom: -80
     },
 });
 
@@ -46,6 +46,7 @@ const FormSpecValueCreate = (props) => {
     const [key, setKey] = useState('');
     const [keys, setKeys] = useState([]);
     const [value, setValue] = useState('');
+    const [editionMode, setEditionMode] = useState(false);
     const navigate = useNavigate();
 
     const classes = useStyles();
@@ -53,8 +54,22 @@ const FormSpecValueCreate = (props) => {
     const params = useParams();
 
     useEffect(() => {
+        if (params.value_id !== 'new') {
+            fetchFormSpecValue(params.form_id, params.spec_id, params.value_id)
+        }
         fetchFormSpecKeys(params.form_id, params.spec_id)
-    }, [params.form_id, params.spec_id])
+    }, [params.form_id, params.spec_id, params.value_id])
+
+    const fetchFormSpecValue = (formId, specId, valueId) => {
+        setLoading(true);
+        api.get(`/forms/${formId}/specs/${specId}/values/${valueId}`)
+        .then((response) => {
+            setEditionMode(true);
+            setKey(response.data.key)
+            setValue(response.data.value)
+        })
+        .finally(() => setLoading(false))
+    }
 
     const fetchFormSpecKeys = (formId, specId) => {
         setLoading(true);
@@ -65,11 +80,7 @@ const FormSpecValueCreate = (props) => {
         .finally(() => setLoading(false))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setError('');
-        setLoading(true);
-
+    const postSpecValue = () => {
         // If we do not use formData, reactJs cant send mainImage binary info to server
         api.post(`/forms/${params.form_id}/specs/${params.spec_id}/values`, {form_spec_value: {key: key, value: value}})
         .then(() => {
@@ -78,9 +89,33 @@ const FormSpecValueCreate = (props) => {
         })
         .catch(error => {
             setLoading(false);
-            console.warn(error.response)
             setError(Messages.treatMessage(error.response));
         });
+    }
+
+    const patchSpecValue = () => {
+        // If we do not use formData, reactJs cant send mainImage binary info to server
+        api.patch(`/forms/${params.form_id}/specs/${params.spec_id}/values/${params.value_id}`, {form_spec_value: {value: value}})
+        .then(() => {
+            setLoading(false);
+            navigate(`/forms/${params.form_id}/specs/${params.spec_id}`);
+        })
+        .catch(error => {
+            setLoading(false);
+            setError(Messages.treatMessage(error.response));
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
+
+        if (editionMode) {
+            patchSpecValue();
+        } else {
+            postSpecValue();
+        }
     }
 
     return (

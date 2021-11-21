@@ -11,7 +11,6 @@ import FormDetail from './forms/FormDetail';
 import FormSpecCreate from './forms/specs/FormSpecCreate';
 import FormSpecDetail from './forms/specs/FormSpecDetail';
 import FormSpecValueCreate from './forms/specs/values/FormSpecValueCreate';
-import FormSpecValueDetail from './forms/specs/values/FormSpecValueDetail';
 
 const AppRoutes = () => (
     <Routes>
@@ -26,7 +25,7 @@ const AppRoutes = () => (
 
         <Route exact path='/forms/:form_id/specs/:spec_id/values/new' element={<FormSpecValueCreate />} />
 
-        <Route exact path='/forms/:form_id/specs/:spec_id/values/:value_id' element={<FormSpecValueDetail />} />
+        <Route exact path='/forms/:form_id/specs/:spec_id/values/:value_id' element={<FormSpecValueCreate />} />
     </Routes>
 )
 
