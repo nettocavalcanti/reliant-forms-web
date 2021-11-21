@@ -28,7 +28,7 @@ const FormSpecYMLView = (props) => {
     return (
         <div className={classes.root}>
             <Typography variant="h6" color="inherit" component="h2" className={classes.title}>
-                YML Preview
+                YML Template Preview
             </Typography>
             <Paper elevation={3}>
                 {spec ? 

@@ -10,6 +10,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import api from "../services/apiService";
+import theme from "./themes/theme";
 
 const useStyles = makeStyles({
     root: {
@@ -70,7 +71,7 @@ const DataTable = (props) => {
                                 <TableCell
                                     key={column.id}
                                     align={column.align}
-                                    style={{ minWidth: column.minWidth }}
+                                    style={{ minWidth: column.minWidth, backgroundColor: theme.palette.primary.dark, color: theme.palette.secondary.dark, fontWeight: 'bold' }}
                                 >
                                     {column.label}
                                 </TableCell>
@@ -92,7 +93,9 @@ const DataTable = (props) => {
                                             {props.header.map((column) => {
                                                 const value = row[column.id];
                                                 return (
-                                                    <TableCell key={column.id} align={column.align}>
+                                                    <TableCell key={column.id} align={column.align}
+                                                     style={{backgroundColor: theme.palette.secondary.light, color: theme.palette.primary.dark}}
+                                                    >
                                                         {column.format ? column.format(value) : value}
                                                     </TableCell>
                                                 );
@@ -102,7 +105,9 @@ const DataTable = (props) => {
                                 })
                                 :
                                 <TableRow hover role="checkbox" tabIndex={-1} key={-1}>
-                                    <TableCell key={-1} align={"center"} colSpan={3}>
+                                    <TableCell key={-1} align={"center"} colSpan={3}
+                                        style={{backgroundColor: theme.palette.secondary.light, color: theme.palette.primary.dark}}
+                                    >
                                         No record found
                                     </TableCell>
                                 </TableRow>
@@ -118,6 +123,7 @@ const DataTable = (props) => {
                 page={page}
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
+                style={{backgroundColor: theme.palette.primary.dark, color: theme.palette.secondary.dark}}
             />
         </Paper>
     );

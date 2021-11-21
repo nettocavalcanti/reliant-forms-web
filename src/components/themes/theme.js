@@ -1,5 +1,5 @@
 import {createTheme} from '@material-ui/core/styles';
-import colors from './blackAndOrange';
+import colors from './skyBlue';
 
 const white = '#FFFFFF';
 const black = '#000000';

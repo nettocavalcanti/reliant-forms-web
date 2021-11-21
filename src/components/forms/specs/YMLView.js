@@ -10,7 +10,7 @@ const YMLView = (props) => {
         <>
         <AceEditor
             focus
-            style={{ width: "100%" }}
+            style={{ width: "100%", maxHeight: 300, marginBottom: 20 }}
             mode="yaml"
             theme="terminal"
             name="editor"
