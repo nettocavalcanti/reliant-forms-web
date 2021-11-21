@@ -30,12 +30,15 @@ const DataTable = (props) => {
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
-    const uri = props.uri;
-    const {dontRedirectToDetails} = props;
+    const {dontRedirectToDetails, uri, rows, header} = props;
 
     useEffect(() => {
-        fetchPage(page, uri, rowsPerPage);
-    }, [page, uri, rowsPerPage]);
+        if (uri) {
+            fetchPage(page, uri, rowsPerPage);
+        } else {
+            setItems(rows)
+        }
+    }, [page, uri, rowsPerPage, rows]);
 
     const fetchPage = (newPage, uri, newRowsPerPage) => {
         setLoading(true);
@@ -68,7 +71,7 @@ const DataTable = (props) => {
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            {props.header.map((column) => (
+                            {header.map((column) => (
                                 <TableCell
                                     key={column.id}
                                     align={column.align}
@@ -96,7 +99,7 @@ const DataTable = (props) => {
                                             }
                                             
                                         }}>
-                                            {props.header.map((column) => {
+                                            {header.map((column) => {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align}
@@ -116,7 +119,7 @@ const DataTable = (props) => {
                                 })
                                 :
                                 <TableRow hover role="checkbox" tabIndex={-1} key={-1}>
-                                    <TableCell key={-1} align={"center"} colSpan={3}
+                                    <TableCell key={-1} align={"center"} colSpan={header.length}
                                         style={{backgroundColor: theme.palette.secondary.light, color: theme.palette.primary.dark}}
                                     >
                                         No record found

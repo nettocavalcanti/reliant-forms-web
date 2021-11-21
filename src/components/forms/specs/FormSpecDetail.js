@@ -20,12 +20,14 @@ const FormSpecDetail = () => {
     const [loading, setLoading] = useState(false);
     const [spec, setSpec] = useState();
     const [form, setForm] = useState();
+    const [values, setValues] = useState([])
 
     const classes = useStyles();
 
     useEffect(() => {
         fetchFormInfo(params.form_id);
         fetchSpecInfo(params.form_id, params.spec_id);
+        fetchValues(params.form_id, params.spec_id)
     }, [params.form_id, params.spec_id]);
 
     const fetchFormInfo = (formId) => {
@@ -46,6 +48,13 @@ const FormSpecDetail = () => {
         .finally(() => setLoading(false));
     }
 
+    const fetchValues = (formId, specId) => {
+        api.get(`/forms/${formId}/specs/${specId}/values`)
+        .then((response) => {
+            setValues(response.data)
+        })
+    }
+
     return (
         <>
             {loading ?
@@ -56,8 +65,8 @@ const FormSpecDetail = () => {
                         Spec #{spec && spec.id} for form '{form && form.name}'
                     </Typography>
                     <Button variant="contained" color="secondary" component={Link} startIcon={<PostAdd />} to={`/forms/${params.form_id}/specs/${params.spec_id}/values/new`}>Create new values for spec</Button>
-                    <FormSpecYMLView spec={spec} />
-                    <FormSpecValueList />
+                    <FormSpecYMLView spec={spec} values={values} />
+                    <FormSpecValueList values={values} />
                 </>
             }
         </>

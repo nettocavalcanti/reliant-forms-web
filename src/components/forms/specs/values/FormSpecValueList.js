@@ -1,8 +1,8 @@
-import { Button, Typography } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
-import { useParams } from "react-router-dom";
 import DataTable from "../../../DataTable";
 import { RemoveRedEye, Edit } from "@material-ui/icons";
+import theme from "../../../themes/theme";
 
 const useStyles = makeStyles({
     root: {
@@ -16,31 +16,26 @@ const useStyles = makeStyles({
     }
 });
 
-const FormSpecValueList = () => {
-    const params = useParams();
+const FormSpecValueList = (props) => {
     const classes = useStyles();
-
-    const handlePreviewClick = (event, row) => {
-        event.preventDefault();
-    }
+    const {values} = props;
 
     const handleEditClick = (event, row) => {
         event.preventDefault();
     }
 
-    const buildPreviewButton = (row) => {
-        return <Button onClick={(event) => handlePreviewClick(event, row)} startIcon={<RemoveRedEye />}></Button>;
-    }
-
     const buildEditButton = (row) => {
-        return <Button startIcon={<Edit onClick={(event) => handleEditClick(event, row)} />}></Button>
+        return (
+            <IconButton onClick={(event) => handleEditClick(event, row)} style={{color: theme.palette.primary.light}}>
+                <Edit />
+            </IconButton>
+        )
     }
 
     const header = [
         { id: 'id', label: '#', minWidth: 30 },
         { id: 'key', label: 'Key', minWidth: 80 },
         { id: 'value', label: 'Value', minWidth: 80 },
-        { id: 'preview', label: 'Preview', minWidth: 40, buildCustomComponent: buildPreviewButton},
         { id: 'edit', label: 'Edit', minWidth: 40, buildCustomComponent: buildEditButton}
     ]
 
@@ -49,7 +44,7 @@ const FormSpecValueList = () => {
             <Typography variant="h6" color="inherit" component="h2" className={classes.title}>
                 Spec Values
             </Typography>
-            <DataTable header={header} uri={`/forms/${params.form_id}/specs/${params.spec_id}/values`} dontRedirectToDetails={true}/>
+            <DataTable header={header} rows={values} dontRedirectToDetails={true}/>
         </div>
     )
 }
