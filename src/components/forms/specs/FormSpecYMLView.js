@@ -34,7 +34,7 @@ const FormSpecYMLView = (props) => {
     return (
         <div className={classes.root}>
             <Typography variant="h6" color="inherit" component="h2" className={classes.title}>
-                <Tooltip title={showCode ? "Show preview" : "Show Code"} placement="start-top">
+                <Tooltip title={showCode ? "Show preview" : "Show Code"} placement="bottom">
                     <IconButton className={classes.toggleButton} color="secondary" onClick={() => setShowCode(!showCode)} >
                         <ToggleIcon on={showCode} onIcon={<Visibility />} offIcon={<Code />}/>
                     </IconButton>

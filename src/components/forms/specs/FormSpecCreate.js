@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Typography, TextField } from "@material-ui/core";
+import { Button, Paper, Typography } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useState } from "react";
 import { useNavigate } from "react-router";
@@ -7,8 +7,13 @@ import { makeStyles } from '@material-ui/styles';
 import api from "../../../services/apiService";
 import Messages from "../../../services/messages";
 import theme from "../../themes/theme";
+import JSONView from "./JSONView";
 
 const useStyles = makeStyles({
+    root: {
+        width: '90%',
+        paddingTop: 20
+    },
     title: {
       padding: 20,
       fontSize: 34,
@@ -33,9 +38,11 @@ const useStyles = makeStyles({
     formBackground: {
         justifyContent: 'center',
         minHeight: '30vh',
-        //padding: 50,
         backgroundColor: theme.palette.secondary.light,
         width: '100%'
+    },
+    submitButton: {
+        marginBottom: 10
     }
 });
 
@@ -67,63 +74,27 @@ const FormSpecCreate = (props) => {
     }
 
     return (
-        <Grid container spacing={0} justifyContent="center" direction="row" className={classes.root}>
-            <Grid item>
-                <Grid item>
-                    <Typography component="h4" variant="h4" color="inherit" className={classes.title}>
-                        Create a new Form Spec
-                    </Typography>
-                </Grid>
-                <Grid container justifyContent="center">
-                    <Grid item xs={12}>
-                    <Paper
-                        variant="elevation"
-                        elevation={2}
-                        className={classes.formBackground}
+        <div className={classes.root}>
+            <Typography variant="h6" color="inherit" component="h2" className={classes.title}>
+                Create a new Form Spec
+            </Typography>
+            
+            <Paper elevation={3}>
+                <form onSubmit={handleSubmit}>
+                    <JSONView onChange={setSpec}/>
+                    {error && <Alert severity="error">{error}</Alert>}
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={loading}
+                        className={classes.submitButton}
                     >
-                        <Grid item xs={12}>
-                            <form onSubmit={handleSubmit}>
-                                <Grid container direction="column" spacing={2}>
-                                    <Grid item>
-                                        <TextField
-                                            type="text"
-                                            multiline
-                                            minRows={20}
-                                            maxRows={40}
-                                            placeholder="JSON Spec"
-                                            fullWidth
-                                            name="spec"
-                                            variant="standard"
-                                            color="secondary"
-                                            value={spec}
-                                            onChange={(event) =>
-                                                setSpec(event.target.value)
-                                            }
-                                            required
-                                            autoFocus
-                                        />
-                                    </Grid>
-                                    {error && <Grid item>
-                                        <Alert severity="error">{error}</Alert>
-                                    </Grid>}
-                                    <Grid item>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            type="submit"
-                                            disabled={loading}
-                                        >
-                                            Submit
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            </form>
-                        </Grid>
-                    </Paper>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
+                        Submit
+                    </Button>
+                </form>
+            </Paper>
+        </div>
     );
 }
 

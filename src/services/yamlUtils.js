@@ -1,5 +1,6 @@
 import jsyaml from 'js-yaml';
 
+/* eslint-disable */
 const flattenHash = (data) => {
     let result = {};
     function recurse(cur, prop) {
