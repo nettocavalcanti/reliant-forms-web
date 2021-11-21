@@ -2,37 +2,40 @@ import { Button, Grid, Paper, Typography, TextField } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import { useParams } from "react-router";
 import { makeStyles } from '@material-ui/styles';
-import api from "../../services/apiService";
-import Messages from "../../services/messages";
+import api from "../../../services/apiService";
+import Messages from "../../../services/messages";
 
 const useStyles = makeStyles({
-    root: {
-        paddingTop: 20
+    title: {
+      padding: 10,
+      fontSize: 34,
+      fontWeight: "bold"
     },
-    contentForm: {
-        justifyContent: 'center',
-        paddingTop: 20,
-        width: 400
+    container: {
+        margin: 10,
+        padding: 10,
+        width: '100%'
     },
-    buttonBlock: {
-        width: '100%',
-        bottom: -150
+    containerField: {
+        textAlign: 'left'
     },
-    formBackground: {
-        justifyContent: 'center',
-        minHeight: '30vh',
-        padding: 50
+    input: {
+        width: '90%'
     }
 });
 
-const FormCreate = () => {
+const FormSpecCreate = (props) => {
+    const {form} = props;
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
-    const [name, setName] = useState('');
+    const [spec, setSpec] = useState('');
     const navigate = useNavigate();
 
     const classes = useStyles();
+
+    const params = useParams();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,10 +43,10 @@ const FormCreate = () => {
         setLoading(true);
 
         // If we do not use formData, reactJs cant send mainImage binary info to server
-        api.post('/forms', {form: {name: name}})
+        api.post(`/forms/${params.form_id}/specs`, {form_spec: {spec: spec}})
         .then(() => {
             setLoading(false);
-            navigate('/forms');
+            navigate(`/forms/${params.form_id}`);
         })
         .catch(error => {
             setLoading(false);
@@ -79,14 +82,17 @@ const FormCreate = () => {
                                     <Grid item>
                                         <TextField
                                             type="text"
-                                            placeholder="Name"
+                                            multiline
+                                            rows={2}
+                                            rowsMax={4}
+                                            placeholder="JSON Spec"
                                             fullWidth
-                                            name="name"
+                                            name="spec"
                                             variant="standard"
                                             color="secondary"
-                                            value={name}
+                                            value={spec}
                                             onChange={(event) =>
-                                                setName(event.target.value)
+                                                setSpec(event.target.value)
                                             }
                                             required
                                             autoFocus
@@ -113,7 +119,7 @@ const FormCreate = () => {
                 </Grid>
             </Grid>
         </Grid>
-    )
+    );
 }
 
-export default FormCreate;
+export default FormSpecCreate;

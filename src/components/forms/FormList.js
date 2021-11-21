@@ -9,7 +9,6 @@ const useStyles = makeStyles({
       width: '100%'
     },
     addButton: {
-        left: -345,
         margin: 10
     }
 });
@@ -26,7 +25,9 @@ const FormList = () => {
     return (
         <div className={classes.root}>
             <h4>Form List</h4>
-            <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<PostAdd />} to="/forms/new">Create new Form</Button>
+            <div align="left">
+                <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<PostAdd />} to="/forms/new">Create new Form</Button>
+            </div>
             <DataTable header={header} uri="/forms"/>
         </div>
     );
