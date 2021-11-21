@@ -31,6 +31,7 @@ const DataTable = (props) => {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(false);
     const uri = props.uri;
+    const {dontRedirectToDetails} = props;
 
     useEffect(() => {
         fetchPage(page, uri, rowsPerPage);
@@ -89,14 +90,24 @@ const DataTable = (props) => {
                             items && items.length > 0 ?
                                 items.map((row, index) => {
                                     return (
-                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => navigate(`${uri}/${items[index].id}`)}>
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row.id} onClick={() => {
+                                            if (!dontRedirectToDetails) {
+                                                navigate(`${uri}/${items[index].id}`)
+                                            }
+                                            
+                                        }}>
                                             {props.header.map((column) => {
                                                 const value = row[column.id];
                                                 return (
                                                     <TableCell key={column.id} align={column.align}
                                                      style={{backgroundColor: theme.palette.secondary.light, color: theme.palette.primary.dark}}
                                                     >
-                                                        {column.format ? column.format(value) : value}
+                                                        {
+                                                            column.buildCustomComponent ?
+                                                            column.buildCustomComponent(row)
+                                                            :
+                                                            (column.format ? column.format(value) : value)
+                                                        }
                                                     </TableCell>
                                                 );
                                             })}

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles';
 import { Link } from "react-router-dom";
 import PostAdd from '@material-ui/icons/PostAdd';
 import { Button, Typography } from "@material-ui/core";
-import theme from "../themes/theme";
 
 const useStyles = makeStyles({
     root: {
