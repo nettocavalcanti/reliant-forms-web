@@ -83,8 +83,8 @@ const FormSpecCreate = (props) => {
                                         <TextField
                                             type="text"
                                             multiline
-                                            rows={2}
-                                            rowsMax={4}
+                                            minRows={2}
+                                            maxRows={4}
                                             placeholder="JSON Spec"
                                             fullWidth
                                             name="spec"
