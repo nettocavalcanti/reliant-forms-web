@@ -17,6 +17,11 @@ const useStyles = makeStyles({
     title: {
         flex: 1,
         textAlign: 'left'
+    },
+    toggleButton: {
+        backgroundColor: theme.palette.primary.dark,
+        padding: 5,
+        margin: 5
     }
 });
 
@@ -30,7 +35,7 @@ const FormSpecYMLView = (props) => {
         <div className={classes.root}>
             <Typography variant="h6" color="inherit" component="h2" className={classes.title}>
                 <Tooltip title={showCode ? "Show preview" : "Show Code"} placement="start-top">
-                    <IconButton color="secondary" onClick={() => setShowCode(!showCode)} style={{backgroundColor: theme.palette.primary.dark, padding: 5, margin: 5}}>
+                    <IconButton className={classes.toggleButton} color="secondary" onClick={() => setShowCode(!showCode)} >
                         <ToggleIcon on={showCode} onIcon={<Visibility />} offIcon={<Code />}/>
                     </IconButton>
                 </Tooltip>
