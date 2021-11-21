@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 import {AppBar, Toolbar, Typography, IconButton, Button} from "@material-ui/core";
 import MenuIcon from '@material-ui/icons/Menu';
+import theme from "./themes/theme";
 
 const NavBar = () => {
-    
+
     return (
         <AppBar position="static" color="primary" /*iconElementLeft = {<img src='header-logo.png' alt="Logo" />}*/>
             <Toolbar>

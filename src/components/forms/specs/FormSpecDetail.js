@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 import { PostAdd } from "@material-ui/icons";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
@@ -52,7 +52,9 @@ const FormSpecDetail = () => {
                 <Loading />
                 :
                 <>
-                    <label className={classes.title}>Spec #{spec && spec.id} for form '{form && form.name}'</label>
+                    <Typography component="h4" variant="h4" color="inherit" className={classes.title}>
+                        Spec #{spec && spec.id} for form '{form && form.name}'
+                    </Typography>
                     <Button variant="contained" color="secondary" component={Link} startIcon={<PostAdd />} to={`/forms/${params.form_id}/specs/${params.spec_id}/values/new`}>Create new values for spec</Button>
                     <FormSpecYMLView spec={spec} />
                     <FormSpecValueList />

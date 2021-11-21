@@ -2,7 +2,8 @@ import DataTable from "../DataTable";
 import { makeStyles } from '@material-ui/styles';
 import { Link } from "react-router-dom";
 import PostAdd from '@material-ui/icons/PostAdd';
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
+import theme from "../themes/theme";
 
 const useStyles = makeStyles({
     root: {
@@ -24,7 +25,9 @@ const FormList = () => {
 
     return (
         <div className={classes.root}>
-            <h4>Form List</h4>
+            <Typography variant="h4" color="inherit" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold' }}>
+                Form List
+            </Typography>
             <div align="left">
                 <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<PostAdd />} to="/forms/new">Create new Form</Button>
             </div>

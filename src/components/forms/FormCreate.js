@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 import { makeStyles } from '@material-ui/styles';
 import api from "../../services/apiService";
 import Messages from "../../services/messages";
+import theme from "../themes/theme";
 
 const useStyles = makeStyles({
     root: {
@@ -22,7 +23,8 @@ const useStyles = makeStyles({
     formBackground: {
         justifyContent: 'center',
         minHeight: '30vh',
-        padding: 50
+        padding: 50,
+        backgroundColor: theme.palette.secondary.light
     }
 });
 
@@ -57,7 +59,7 @@ const FormCreate = () => {
         <Grid container spacing={0} justifyContent="center" direction="row" className={classes.root}>
             <Grid item>
                 <Grid item>
-                    <Typography component="h4" variant="h4" color="initial">
+                    <Typography component="h4" variant="h4" color="inherit">
                         Create a new Form
                     </Typography>
                 </Grid>

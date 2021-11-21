@@ -1,16 +1,18 @@
-import { Grid, Paper, TextField } from "@material-ui/core";
+import { Grid, Paper, TextField, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/styles';
+import theme from "../themes/theme";
 
 const useStyles = makeStyles({
     title: {
-      padding: 10,
+      padding: 20,
       fontSize: 34,
       fontWeight: "bold"
     },
     container: {
         margin: 10,
         padding: 10,
-        width: '100%'
+        width: '100%',
+        backgroundColor: theme.palette.secondary.light
     },
     containerField: {
         textAlign: 'left'
@@ -28,9 +30,9 @@ const FormDetailInfo = (props) => {
         <>
             {form && 
                 <Grid container>
-                    <Grid item xs={3} className={classes.title}>
+                    <Typography component="h4" variant="h4" color="inherit" className={classes.title}>
                         Form details
-                    </Grid>
+                    </Typography>
                     <Paper variant="outlined" elevation={6} className={classes.container}>
                         <Grid container direction="row">
                             <Grid item xs={6} className={classes.containerField}>

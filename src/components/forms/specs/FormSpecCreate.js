@@ -50,9 +50,7 @@ const FormSpecCreate = (props) => {
         })
         .catch(error => {
             setLoading(false);
-            setError(
-                (error.response && error.response.data && error.response.data.error) || Messages.SERVER_COMMUNICATION_FAILURE
-            );
+            setError(Messages.treatMessage(error.response));
         });
     }
 
@@ -60,7 +58,7 @@ const FormSpecCreate = (props) => {
         <Grid container spacing={0} justifyContent="center" direction="row" className={classes.root}>
             <Grid item>
                 <Grid item>
-                    <Typography component="h4" variant="h4" color="initial">
+                    <Typography component="h4" variant="h4" color="inherit">
                         Create a new Form
                     </Typography>
                 </Grid>

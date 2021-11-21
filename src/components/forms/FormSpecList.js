@@ -2,7 +2,7 @@ import DataTable from "../DataTable";
 import { makeStyles } from '@material-ui/styles';
 import { Link } from "react-router-dom";
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
 
 const MAX_TEXT_LENGTH = 50;
 
@@ -12,6 +12,9 @@ const useStyles = makeStyles({
     },
     addButton: {
         margin: 10
+    },
+    title: {
+        paddingTop: 20
     }
 });
 
@@ -36,7 +39,9 @@ const FormSpecList = (props) => {
         <>
             {form && 
                 <div className={classes.root}>
-                    <h4>Form Spec List</h4>
+                    <Typography component="div" variant="h6" color="inherit" className={classes.title}>
+                        Form Spec List
+                    </Typography>
                     <div align="left">
                         <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<LibraryAdd />} to={`/forms/${form.id}/specs/new`}>Create new Form Spec</Button>
                     </div>

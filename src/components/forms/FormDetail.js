@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../../services/apiService";
+import Loading from "../Loading";
 import FormDetailInfo from "./FormDetailInfo";
 import FormSpecList from "./FormSpecList";
 
@@ -25,7 +26,7 @@ const FormDetail = () => {
     return (
         <>
             {loading ?
-                <h4>Loading...</h4>
+                <Loading />
                 :
                 <>
                     <FormDetailInfo form={form} />

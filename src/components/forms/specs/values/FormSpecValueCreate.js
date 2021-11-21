@@ -6,10 +6,14 @@ import { useParams } from "react-router";
 import { makeStyles } from '@material-ui/styles';
 import api from "../../../../services/apiService";
 import Messages from "../../../../services/messages";
+import theme from "../../../themes/theme";
 
 const useStyles = makeStyles({
+    root: {
+        paddingTop: 20
+    },
     title: {
-      padding: 10,
+      paddingBottom: 20,
       fontSize: 34,
       fontWeight: "bold"
     },
@@ -18,12 +22,22 @@ const useStyles = makeStyles({
         padding: 10,
         width: '100%'
     },
+    formBackground: {
+        justifyContent: 'center',
+        minHeight: '30vh',
+        padding: 50,
+        backgroundColor: theme.palette.secondary.light
+    },
     containerField: {
         textAlign: 'left'
     },
     input: {
         width: '90%'
-    }
+    },
+    buttonBlock: {
+        width: '100%',
+        bottom: -130
+    },
 });
 
 const FormSpecValueCreate = (props) => {
@@ -73,7 +87,7 @@ const FormSpecValueCreate = (props) => {
         <Grid container spacing={0} justifyContent="center" direction="row" className={classes.root}>
             <Grid item>
                 <Grid item>
-                    <Typography component="h4" variant="h4" color="initial">
+                    <Typography component="h4" variant="h4" color="inherit" className={classes.title}>
                         Create a new Spec Value
                     </Typography>
                 </Grid>
