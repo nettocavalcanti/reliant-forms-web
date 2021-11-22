@@ -5,14 +5,14 @@ import { ThumbUp } from "@material-ui/icons";
 const Home = () => {
     return (
         <div>
-            <Typography variant="h4" color="textPrimary" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold' }}>
+            <Typography variant="h4" color="inherit" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold' }}>
                 Custom Form Builder
             </Typography>
-            <Typography variant="h5" color="textPrimary" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold' }}>
+            <Typography variant="h5" color="inherit" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold' }}>
                 Welcome to the best web application for building custom Forms!
             </Typography>
 
-            <Typography variant="h6" color="textPrimary" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold', paddingBottom: 20 }}>
+            <Typography variant="h6" color="inherit" component="div" style={{ flex: 1, paddingTop: 20, fontWeight: 'bold', paddingBottom: 20 }}>
                 Start today your own form clicking the link below!
             </Typography>
 

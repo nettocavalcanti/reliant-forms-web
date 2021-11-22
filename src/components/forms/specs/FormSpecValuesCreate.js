@@ -14,12 +14,13 @@ const useStyles = makeStyles({
         minHeight: '30vh',
         padding: 50,
         backgroundColor: theme.palette.secondary.light,
+        marginTop: 30
     },
     formFooter: {
         marginTop: 20
     },
     submitButton: {
-        marginBottom: 10
+        marginBottom: -100
     }
 });
 
