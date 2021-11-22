@@ -49,9 +49,7 @@ const FormCreate = () => {
         })
         .catch(error => {
             setLoading(false);
-            setError(
-                (error.response && error.response.data && error.response.data.error) || Messages.SERVER_COMMUNICATION_FAILURE
-            );
+            setError(Messages.treatMessage(error.response));
         });
     }
 

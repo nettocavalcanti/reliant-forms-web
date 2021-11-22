@@ -54,7 +54,7 @@ const FormSpecValueCreate = (props) => {
     const params = useParams();
 
     useEffect(() => {
-        if ((params.value_id) && (params.value_id !== 'new')) {
+        if ((params.value_id) && (typeof params.value_id === 'number')) {
             fetchFormSpecValue(params.form_id, params.spec_id, params.value_id)
         }
         fetchFormSpecKeys(params.form_id, params.spec_id)

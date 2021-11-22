@@ -2,6 +2,7 @@ import DataTable from "../DataTable";
 import { makeStyles } from '@material-ui/styles';
 import { Link } from "react-router-dom";
 import LibraryAdd from '@material-ui/icons/LibraryAdd';
+import AssignmentTurnedIn from "@material-ui/icons/AssignmentTurnedIn";
 import { Button, Typography } from "@material-ui/core";
 
 const MAX_TEXT_LENGTH = 50;
@@ -44,6 +45,8 @@ const FormSpecList = (props) => {
                     </Typography>
                     <div align="left">
                         <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<LibraryAdd />} to={`/forms/${form.id}/specs/new`}>Create new Form Spec</Button>
+                        <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<AssignmentTurnedIn />} to={`/forms/${form.id}/specs/values/new`}>Fill all Form Spec Values</Button>
+                        <Button className={classes.addButton} variant="contained" color="secondary" component={Link} startIcon={<AssignmentTurnedIn />} to={`/forms/${form.id}/specs/values/preview`}>Preview Form as YAML</Button>
                     </div>
                     <DataTable header={header} uri={`/forms/${form.id}/specs`}/>
                 </div>
